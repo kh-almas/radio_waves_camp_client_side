@@ -15,6 +15,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [isLoadData, setIsLoadData] = useState(true);
+    const [isProfileUpdated, setIsProfileUpdated] = useState(true);
 
     const userLogin = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);

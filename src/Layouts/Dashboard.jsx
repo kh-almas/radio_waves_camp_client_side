@@ -2,6 +2,9 @@ import React, {useContext} from 'react';
 import {Link, Outlet} from "react-router-dom";
 import {AuthContext} from "../Providers/AuthProvider.jsx";
 import Swal from "sweetalert2";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Dashboard = () => {
     const {user, logout} = useContext(AuthContext);
@@ -28,6 +31,7 @@ const Dashboard = () => {
     }
     return (
         <>
+            <ToastContainer />
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
