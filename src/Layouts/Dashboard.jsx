@@ -54,7 +54,7 @@ const Dashboard = () => {
                         <ul className="mt-8">
                             <li><Link to={'/dashboard'} >Home</Link></li>
                             <li><Link to={'/dashboard/add-class'} >Add Class</Link></li>
-                            <li><a>Sidebar Item 2</a></li>
+                            <li><Link to={'/dashboard/my-class'} >My Class</Link></li>
                         </ul>
                         <div className="divider"></div>
                         <button onClick={handelLogout} className="mr-4">Logout</button>

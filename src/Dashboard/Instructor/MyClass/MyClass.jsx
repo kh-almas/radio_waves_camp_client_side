@@ -1,0 +1,97 @@
+import React from 'react';
+import UseClass from "../../../Hooks/useClass.jsx";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
+import Swal from "sweetalert2";
+
+const MyClass = () => {
+    const [refetch, classData] = UseClass();
+    const axiosSecure = useAxiosSecure();
+    const deleteClass = id => {
+            // ?email=${user?.email}
+        console.log(id);
+
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/class/${id}`).then((data) => {
+                    console.log(data);
+                    if(data.data.deletedCount){
+                        refetch();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+            }
+        })
+    }
+    return (
+        <div>
+            <h2 className="text-center text-2xl font-bold">My class</h2>
+            <div>
+                <div className="overflow-x-auto overflow-y-visible">
+                    <table className="table  ">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Available Sits</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            classData?.map((singleClass, index) =>
+                                <tr key={index}>
+                                    <th>
+                                        {index + 1}
+                                    </th>
+                                    <td>
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-12 h-12">
+                                                <img src={singleClass?.img} alt="img" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p>{singleClass?.className}</p>
+                                    </td>
+                                    <td>
+                                        <div className="badge badge-neutral">{singleClass?.status}</div>
+                                    </td>
+                                    <td>{singleClass?.availableSeats - singleClass?.enroll}</td>
+                                    <td>
+                                        <details className="dropdown">
+                                            <summary className="m-1 btn">Action</summary>
+                                            <ul className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 z-50">
+                                                <li><a>Update</a></li>
+                                                <li><button onClick={() => deleteClass(singleClass?._id)}>Delete</button></li>
+                                            </ul>
+                                        </details>
+                                    </td>
+                                </tr>
+                            )
+                        }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default MyClass;

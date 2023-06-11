@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {AuthContext} from "../../../Providers/AuthProvider.jsx";
 import {useForm} from "react-hook-form";
-import useAxiosSecure from "../../../useAxiosSecure/useAxiosSecure.jsx";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
 import {toast} from "react-toastify";
 
 const AddClass = () => {
@@ -15,6 +15,7 @@ const AddClass = () => {
             instructorEmail: user?.email,
             status: 'pending',
             feedback: null,
+            enroll: 0,
             ...data
         }
         console.log(import.meta.env.VITE_API_URL)
@@ -67,14 +68,14 @@ const AddClass = () => {
                         <label className="label">
                             <span className="label-text">Available seats</span>
                         </label>
-                        <input type="text" {...register("availableSeats", { required: true })} className="input input-bordered w-full" />
+                        <input type="number" {...register("availableSeats", { required: true })} className="input input-bordered w-full" />
                         {errors.availableSeats && <small className="text-white mt-2">Available seats is required</small>}
                     </div>
                     <div className="form-control w-1/2">
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="text" {...register("price", { required: true })} className="input input-bordered w-full" />
+                        <input type="number" {...register("price", { required: true })} className="input input-bordered w-full" />
                         {errors.price && <small className="text-white mt-2">Price is required</small>}
                     </div>
                 </div>
