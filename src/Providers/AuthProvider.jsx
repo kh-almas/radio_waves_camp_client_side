@@ -9,12 +9,13 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import auth from "../Firebase/firebase.config.js";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const [isLoadData, setIsLoadData] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [isProfileUpdated, setIsProfileUpdated] = useState(true);
 
     const userLogin = (email, password) => {
@@ -45,9 +46,18 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setUser(user);
+            if (user)
+            {
+                axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {email: user.email})
+                    .then(data => {
+                        localStorage.setItem('token', data.data.token);
+                    })
+
+            }
+
+            setLoading(false);
             console.log(user);
         })
-        setIsLoadData(false)
 
         return () => {
             return unsubscribe();
@@ -61,8 +71,8 @@ const AuthProvider = ({ children }) => {
         updateProfileInformation,
         logout,
         authWithGoogle,
-        isLoadData,
-        setIsLoadData
+        loading,
+        // setIsLoadData
     };
 
     return (

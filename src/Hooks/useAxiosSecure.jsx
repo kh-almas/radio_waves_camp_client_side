@@ -1,12 +1,15 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import {useEffect} from "react";
 
 
 const axiosSecure = axios.create({
-    baseURL: `http://localhost:4000`,
+    baseURL: `${import.meta.env.VITE_API_URL}`,
 
 })
 const useAxiosSecure = () => {
+
+
     axiosSecure.interceptors.request.use((req)=>{
         const token = localStorage.getItem("access-token");
         if(token){
