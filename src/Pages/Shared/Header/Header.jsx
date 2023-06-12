@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
+import Swal from "sweetalert2";
 import {AuthContext} from "../../../Providers/AuthProvider.jsx";
 
 const Header = () => {

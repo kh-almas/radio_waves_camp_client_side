@@ -14,21 +14,11 @@ const AddClass = () => {
             instructorName: user?.displayName,
             instructorEmail: user?.email,
             status: 'pending',
-            feedback: null,
+            feedback: '',
             enroll: 0,
             ...data
         }
-        console.log(import.meta.env.VITE_API_URL)
 
-        // fetch(`${import.meta.env.VITE_API_URL}/class`, {
-        //     method: 'POST',
-        //     headers:{
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(allInfo)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => console.log(data))
         axiosSecure.post(`/class`, allInfo)
             .then((data) => {
                 console.log(data?.data);
