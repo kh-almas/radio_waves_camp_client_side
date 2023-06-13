@@ -2,6 +2,7 @@ import React from 'react';
 import UseClass from "../../../Hooks/useClass.jsx";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
 import Swal from "sweetalert2";
+import {Link} from "react-router-dom";
 
 const MyClass = () => {
     const [refetch, classData] = UseClass();
@@ -77,7 +78,7 @@ const MyClass = () => {
                                         <details className="dropdown">
                                             <summary className="m-1 btn">Action</summary>
                                             <ul className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 z-50">
-                                                <li><a>Update</a></li>
+                                                <li><Link to={`/dashboard/update-class/${singleClass?._id}`}>Update</Link></li>
                                                 <li><button onClick={() => deleteClass(singleClass?._id)}>Delete</button></li>
                                             </ul>
                                         </details>

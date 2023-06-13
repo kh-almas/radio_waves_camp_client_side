@@ -52,11 +52,8 @@ const AuthProvider = ({ children }) => {
                     .then(data => {
                         localStorage.setItem('token', data.data.token);
                     })
-
             }
-
             setLoading(false);
-            console.log(user);
         })
 
         return () => {
@@ -72,7 +69,7 @@ const AuthProvider = ({ children }) => {
         logout,
         authWithGoogle,
         loading,
-        // setIsLoadData
+        setLoading
     };
 
     return (

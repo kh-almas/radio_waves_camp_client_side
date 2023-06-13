@@ -8,6 +8,7 @@ import Dashboard from "../Layouts/Dashboard.jsx";
 import AddClass from "../Dashboard/Instructor/AddClass/AddClass.jsx";
 import DashboardHome from "../Dashboard/DashboardHome.jsx";
 import MyClass from "../Dashboard/Instructor/MyClass/MyClass.jsx";
+import UpdateClass from "../Dashboard/Instructor/UpdateClass/UpdateClass.jsx";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/my-class',
                 element: <MyClass />,
+            },
+            {
+                path:'/dashboard/update-class/:id',
+                element: <UpdateClass />,
             }
         ]
     }
