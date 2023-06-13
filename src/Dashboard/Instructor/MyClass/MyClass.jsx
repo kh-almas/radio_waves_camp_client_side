@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { Fragment, useState }  from 'react';
 import UseClass from "../../../Hooks/useClass.jsx";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
 import Swal from "sweetalert2";
+import { Dialog, Transition } from '@headlessui/react'
 import {Link} from "react-router-dom";
 
 const MyClass = () => {
     const [refetch, classData] = UseClass();
     const axiosSecure = useAxiosSecure();
+    const [isOpen, setIsOpen] = useState(false)
+
+    function closeModal() {
+        refetch();
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        refetch();
+        setIsOpen(true)
+    }
     const deleteClass = id => {
             // ?email=${user?.email}
         Swal.fire({
@@ -25,7 +37,7 @@ const MyClass = () => {
                         refetch();
                         Swal.fire(
                             'Deleted!',
-                            'Your file has been deleted.',
+                            'Class has been deleted.',
                             'success'
                         )
                     }
@@ -45,6 +57,7 @@ const MyClass = () => {
                             <th>Image</th>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Feedback</th>
                             <th>Available Sits</th>
                             <th>Actions</th>
                         </tr>
@@ -69,7 +82,13 @@ const MyClass = () => {
                                     <td>
                                         <div className="badge badge-neutral">{singleClass?.status}</div>
                                     </td>
-                                    <td>{singleClass?.availableSeats - singleClass?.enroll}</td>
+                                    <td>
+                                        {singleClass?.feedback}
+                                    </td>
+
+                                    <td>
+                                        <div className="badge badge-neutral">{singleClass?.availableSeats}</div>
+                                    </td>
                                     <td>
                                         <details className="dropdown">
                                             <summary className="m-1 btn">Action</summary>

@@ -61,6 +61,7 @@ const Dashboard = () => {
                         <ul>
                             <li><Link to={'/dashboard/admin'} >Home</Link></li>
                             <li><Link to={'/dashboard/admin/users'} >Users</Link></li>
+                            <li><Link to={'/dashboard/admin/class'} >Class</Link></li>
                         </ul>
                         <div className="divider"></div>
                         <button onClick={handelLogout} className="mr-4">Logout</button>
