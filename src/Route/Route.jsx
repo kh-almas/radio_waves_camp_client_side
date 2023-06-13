@@ -9,6 +9,7 @@ import AddClass from "../Dashboard/Instructor/AddClass/AddClass.jsx";
 import DashboardHome from "../Dashboard/DashboardHome.jsx";
 import MyClass from "../Dashboard/Instructor/MyClass/MyClass.jsx";
 import UpdateClass from "../Dashboard/Instructor/UpdateClass/UpdateClass.jsx";
+import ManageUser from "../Dashboard/Admin/User/ManageUser.jsx";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,21 @@ const router = createBrowserRouter([
                 path:'/dashboard/update-class/:id',
                 element: <UpdateClass />,
             }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        errorElement: <NotFound />,
+        children: [
+            {
+                path:'/dashboard/admin',
+                element: <DashboardHome />,
+            },
+            {
+                path:'/dashboard/admin/users',
+                element: <ManageUser />,
+            },
         ]
     }
 ]);

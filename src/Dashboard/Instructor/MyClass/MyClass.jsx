@@ -9,10 +9,6 @@ const MyClass = () => {
     const axiosSecure = useAxiosSecure();
     const deleteClass = id => {
             // ?email=${user?.email}
-        console.log(id);
-
-
-
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

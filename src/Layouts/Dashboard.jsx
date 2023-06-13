@@ -51,10 +51,16 @@ const Dashboard = () => {
 
                                 </div> : ''
                         }
-                        <ul className="mt-8">
+                        <div className="divider"></div>
+                        <ul>
                             <li><Link to={'/dashboard'} >Home</Link></li>
                             <li><Link to={'/dashboard/add-class'} >Add Class</Link></li>
                             <li><Link to={'/dashboard/my-class'} >My Class</Link></li>
+                        </ul>
+                        <div className="divider"></div>
+                        <ul>
+                            <li><Link to={'/dashboard/admin'} >Home</Link></li>
+                            <li><Link to={'/dashboard/admin/users'} >Users</Link></li>
                         </ul>
                         <div className="divider"></div>
                         <button onClick={handelLogout} className="mr-4">Logout</button>
