@@ -26,8 +26,8 @@ const Header = () => {
         });
     }
     return (
-        <>
-            <div className="navbar bg-transparent fixed z-50">
+        <div>
+            <div className="navbar bg-white bg-opacity-80 fixed z-50">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -35,17 +35,11 @@ const Header = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to={'/dashboard'}>Dashboard</Link></li>
-                            <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </li>
+                            <li><Link to={'/'}>Class</Link></li>
+                            <li><Link to={'/'}>Instructor</Link></li>
                             {
                                 user ?
                                     <>
-                                        <img src={user?.photoURL} alt="profile_img" className="w-12 h-12 rounded-full mr-4"/>
                                         <button onClick={handelLogout} className="mr-4">Logout</button>
                                     </>
                                     :
@@ -55,38 +49,35 @@ const Header = () => {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-xl">RadioWavesCamp</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><Link to={'/dashboard'}>Dashboard</Link></li>
-                        <li tabIndex={0}>
-                            <details>
-                                <summary>Parent</summary>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </details>
-                        </li>
+                        <li><Link to={'/'}>Home</Link></li>
+                        <li><Link to={'/'}>Class</Link></li>
+                        <li><Link to={'/'}>Instructor</Link></li>
                         {
                             user ?
-                                <>
-                                    <img src={user?.photoURL} alt="profile_img" className="w-12 h-12 rounded-full mr-4"/>
-                                    <button onClick={handelLogout} className="mr-4">Logout</button>
-                                </>
-                                :
-                                <>
-                                    <Link to={'/login'}>Login</Link>
-                                </>
+                                <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                                : ''
                         }
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {
+                        user ?
+                            <>
+                                <img src={user?.photoURL} alt="profile_img" className="w-12 h-12 rounded-full mr-4"/>
+                                <button onClick={handelLogout} className="mr-4">Logout</button>
+                            </>
+                            :
+                            <>
+                                <Link to={'/login'}>Login</Link>
+                            </>
+                    }
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
