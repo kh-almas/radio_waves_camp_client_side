@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {AuthContext} from "../../../Providers/AuthProvider.jsx";
 import {useForm} from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
-import {toast} from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddClass = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -21,12 +21,24 @@ const AddClass = () => {
 
         axiosSecure.post(`/class`, allInfo)
             .then((data) => {
-                console.log(data?.data);
-                data?.data.insertedId && toast("Class added");
+                if (data?.data?.insertedId === 1){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Class added',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             })
             .catch((err) => {
-                console.log(err);
-                toast(err.message)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Something is wrong',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             });
     }
 

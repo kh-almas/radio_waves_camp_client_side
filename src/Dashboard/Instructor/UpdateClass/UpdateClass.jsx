@@ -45,7 +45,7 @@ const UpdateClass = () => {
                 Swal.fire({
                     position: 'center',
                     icon: 'warning',
-                    title: 'Something is wrong1',
+                    title: 'Something is wrong',
                     showConfirmButton: false,
                     timer: 1500
                 })
