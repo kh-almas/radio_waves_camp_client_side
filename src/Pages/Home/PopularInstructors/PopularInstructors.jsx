@@ -15,7 +15,6 @@ const PopularInstructors = () => {
             console.log(e)
         });
     }, [])
-    console.log(data);
     return (
         <div className="mb-12 lg:px-12">
             <SectionHeader title="Popular Instructors"></SectionHeader>

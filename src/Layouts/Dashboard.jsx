@@ -60,7 +60,7 @@ const Dashboard = () => {
                                     <ul>
                                         <li><Link to={'/dashboard'} >Home</Link></li>
                                         <li><Link to={'/dashboard/student/cart'} >Cart</Link></li>
-                                        <li><Link to={''} >My Class</Link></li>
+                                        <li><Link to={'/dashboard/student/class'} >My Class</Link></li>
                                     </ul>
                                     <div className="divider"></div>
                                 </> : ''
@@ -93,7 +93,7 @@ const Dashboard = () => {
                         <ul>
                             <li><Link to={'/'} >Home</Link></li>
                             <li><Link to={'/all-class'} >Class</Link></li>
-                            <li><Link to={'/'} >Instructor</Link></li>
+                            <li><Link to={'/instructor'} >Instructor</Link></li>
                         </ul>
                         <div className="divider"></div>
 

@@ -14,6 +14,7 @@ import ManageClass from "../Dashboard/Admin/Class/ManageClass.jsx";
 import AllClass from "../Pages/AllClass/AllClass.jsx";
 import Cart from "../Dashboard/Student/Cart.jsx";
 import AllInstructor from "../Pages/AllInstructor/AllInstructor.jsx";
+import EnrolledClass from "../Dashboard/Student/EnrolledClass/EnrolledClass.jsx";
 
 const router = createBrowserRouter([
     {
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/student/cart',
                 element: <Cart />,
-            }
+            },
+            {
+                path:'/dashboard/student/class',
+                element: <EnrolledClass />,
+            },
         ]
     },
     {

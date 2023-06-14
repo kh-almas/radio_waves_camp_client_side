@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import SectionHeader from "../../Shared/SectionHeader/SectionHeader.jsx";
 import {AuthContext} from "../../../Providers/AuthProvider.jsx";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
+import Swal from "sweetalert2";
 
 const PopularClasses = () => {
     const {user} = useContext(AuthContext);
@@ -15,6 +16,48 @@ const PopularClasses = () => {
             console.log(e)
         });
     }, [])
+
+    const addToCart = (data) =>{
+        data.classId = data._id;
+        delete data?._id;
+        data.studentName = user.displayName;
+        data.studentEmail = user.email;
+        console.log(data);
+        axiosSecure.post(`/cart`, data)
+            .then((data) => {
+                console.log(data.data)
+                if (data?.data?.upsertedCount){
+                    refetch();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Add to cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                if (data?.data?.matchedCount === 1 && data?.data?.upsertedCount === 0){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Already in cart',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Something is wrong',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+    }
+
     return (
         <div className="lg:px-12">
             <SectionHeader title="Popular Class"></SectionHeader>
@@ -29,7 +72,7 @@ const PopularClasses = () => {
                                     <p>Available Sits: {singleData.availableSeats}</p>
                                     <p>Price: ${singleData.price}</p>
                                     <div className="card-actions">
-                                        <button className="btn btn-primary w-full">Add to cart</button>
+                                        <button  onClick={() => addToCart(singleData)} className="btn btn-primary w-full">Add to cart</button>
                                     </div>
                                 </div>
                             </div>

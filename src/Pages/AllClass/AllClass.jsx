@@ -21,7 +21,6 @@ const AllClass = () => {
             .then((data) => {
                 console.log(data.data)
                 if (data?.data?.upsertedCount){
-                    refetch();
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
