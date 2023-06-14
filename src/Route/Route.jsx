@@ -12,6 +12,7 @@ import UpdateClass from "../Dashboard/Instructor/UpdateClass/UpdateClass.jsx";
 import ManageUser from "../Dashboard/Admin/User/ManageUser.jsx";
 import ManageClass from "../Dashboard/Admin/Class/ManageClass.jsx";
 import AllClass from "../Pages/AllClass/AllClass.jsx";
+import Cart from "../Dashboard/Student/Cart.jsx";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,17 @@ const router = createBrowserRouter([
                 path: '/login',
                 element: <Login />
             },
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        errorElement: <NotFound />,
+        children: [
+            {
+                path:'/dashboard/student/cart',
+                element: <Cart />,
+            }
         ]
     },
     {

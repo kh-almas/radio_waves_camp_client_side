@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Link, Outlet} from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react';
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import {AuthContext} from "../Providers/AuthProvider.jsx";
 import Swal from "sweetalert2";
 import { ToastContainer } from 'react-toastify';
@@ -7,7 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Dashboard = () => {
-    const {user, logout} = useContext(AuthContext);
+    const {user, logout, role} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handelLogout = () =>{
         logout()
@@ -19,6 +20,7 @@ const Dashboard = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                navigate('/', { replace: true });
             }).catch((error) => {
             Swal.fire({
                 position: 'center',
@@ -40,7 +42,7 @@ const Dashboard = () => {
                         <Outlet />
                     </div>
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side  overflow-scroll">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <div className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                         {
@@ -52,18 +54,44 @@ const Dashboard = () => {
                                 </div> : ''
                         }
                         <div className="divider"></div>
-                        <ul>
-                            <li><Link to={'/dashboard'} >Home</Link></li>
-                            <li><Link to={'/dashboard/add-class'} >Add Class</Link></li>
-                            <li><Link to={'/dashboard/my-class'} >My Class</Link></li>
-                        </ul>
-                        <div className="divider"></div>
-                        <ul>
-                            <li><Link to={'/dashboard/admin'} >Home</Link></li>
-                            <li><Link to={'/dashboard/admin/users'} >Users</Link></li>
-                            <li><Link to={'/dashboard/admin/class'} >Class</Link></li>
-                        </ul>
-                        <div className="divider"></div>
+                        {
+                            role === "user" ?
+                                <>
+                                    <ul>
+                                        <li><Link to={'/dashboard'} >Home</Link></li>
+                                        <li><Link to={'/dashboard/student/cart'} >Cart</Link></li>
+                                        <li><Link to={''} >My Class</Link></li>
+                                    </ul>
+                                    <div className="divider"></div>
+                                </> : ''
+                        }
+
+                        {
+                            role === "instructor" ?
+                                <>
+                                    <ul>
+                                        <li><Link to={'/dashboard'} >Home</Link></li>
+                                        <li><Link to={'/dashboard/add-class'} >Add Class</Link></li>
+                                        <li><Link to={'/dashboard/my-class'} >My Class</Link></li>
+                                    </ul>
+                                    <div className="divider"></div>
+                                </> : ''
+                        }
+
+                        {
+                            role === "admin" ?
+                                <>
+                                    <ul>
+                                        <li><Link to={'/dashboard/admin'} >Home</Link></li>
+                                        <li><Link to={'/dashboard/admin/users'} >Users</Link></li>
+                                        <li><Link to={'/dashboard/admin/class'} >Class</Link></li>
+                                    </ul>
+                                    <div className="divider"></div>
+                                </> : ''
+                        }
+
+
+
                         <button onClick={handelLogout} className="mr-4">Logout</button>
                     </div>
 

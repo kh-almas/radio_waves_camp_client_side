@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const [isProfileUpdated, setIsProfileUpdated] = useState(true);
+    const [role, setRole] = useState('');
 
     const userLogin = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
@@ -45,14 +46,11 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
-
-
-
             if (user)
             {
                 axios.get(`${import.meta.env.VITE_API_URL}/loged-in-data/${user?.email}`)
                     .then(data => {
-                        console.log(data.data);
+                        setRole(data.data.role);
                         user.role = data.data.role;
                         user.phone = data.data.phone;
                         user.gender = data.data.gender;
@@ -82,7 +80,8 @@ const AuthProvider = ({ children }) => {
         logout,
         authWithGoogle,
         loading,
-        setLoading
+        setLoading,
+        role
     };
 
     return (
