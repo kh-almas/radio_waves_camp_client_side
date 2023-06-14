@@ -3,14 +3,14 @@ import {AuthContext} from "../Providers/AuthProvider.jsx";
 import useAxiosSecure from "./useAxiosSecure.jsx";
 import {useQuery} from "@tanstack/react-query";
 
-const UseAllClass = () => {
+const UseAllInstructor = () => {
     const {user, loading} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
-    const { status, refetch, data: classData = [], error } = useQuery({
-        queryKey: ['all-Class'],
+    const { status, refetch, data: instructorData = [], error } = useQuery({
+        queryKey: ['all-instructor'],
         enabled: !loading,
         queryFn: async () => {
-            const response = await axiosSecure.get(`/all-class/${user?.email}`)
+            const response = await axiosSecure.get(`/all-instructor/${user?.email}`)
             return response.data;
         },
     })
@@ -22,7 +22,7 @@ const UseAllClass = () => {
     // if (status === 'error') {
     //     return <span>Error: {error.message}</span>
     // }
-    return [refetch, classData];
+    return [refetch, instructorData];
 };
 
-export default UseAllClass;
+export default UseAllInstructor;
