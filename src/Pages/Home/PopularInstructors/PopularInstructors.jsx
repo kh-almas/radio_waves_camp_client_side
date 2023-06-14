@@ -6,7 +6,7 @@ const PopularInstructors = () => {
         <div className="mb-12 lg:px-12">
             <SectionHeader title="Popular Instructors"></SectionHeader>
 
-            <div className="w-2/3 mx-auto">
+            <div className="lg:w-2/3 mx-auto">
                 <div className="grid grid-cols-3 gap-2">
                     <div className="card shadow">
                         <div className="card">

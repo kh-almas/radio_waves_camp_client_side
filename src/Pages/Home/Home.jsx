@@ -5,6 +5,7 @@ import Slider from "./Slider/Slider.jsx";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader.jsx";
 import PopularClasses from "./PopularClasses/PopularClasses.jsx";
 import PopularInstructors from "./PopularInstructors/PopularInstructors.jsx";
+import CourseMatcher from "./CourseMatcher/CourseMatcher.jsx";
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Slider />
             <PopularClasses />
             <PopularInstructors />
+            <CourseMatcher />
         </div>
     );
 };
