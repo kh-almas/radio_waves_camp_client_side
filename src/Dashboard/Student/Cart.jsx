@@ -30,7 +30,6 @@ const Cart = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/remove-cart-item/${id}/${user?.email}`).then((data) => {
-                    console.log(data.data);
                     if(data.data.deletedCount){
 
                         setReload(!reload)
@@ -42,15 +41,56 @@ const Cart = () => {
                     }
                 })
                     .catch(e => {
-                        console.log(e);
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Something is wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     });
             }
         })
     }
 
+    const updateCart = allData =>{
+        console.log(allData);
+        allData?.map(data => {
+            data.cartId = data?._id;
+            delete data?._id;
+        })
+        axiosSecure.post(`/enrolled/${user?.email}`, allData).then((data) => {
+            console.log(data.data);
+            if (data?.data?.insertedCount > 0){
+                setReload(!reload)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully enrolled classes',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
+            .catch(e => {
+                console.log(e)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Something is wrong',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+
+    }
+
     return (
         <div>
             <h2 className="text-center text-2xl font-bold">Cart</h2>
+            <div className="flex justify-center mt-4 mb-8">
+                <button onClick={() => updateCart(cartData)} className="btn btn-primary">Order</button>
+            </div>
             <div>
                 <div className="overflow-x-auto overflow-y-visible">
                     <table className="table  ">

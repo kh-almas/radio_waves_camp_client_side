@@ -90,6 +90,12 @@ const Dashboard = () => {
                                 </> : ''
                         }
 
+                        <ul>
+                            <li><Link to={'/'} >Home</Link></li>
+                            <li><Link to={'/all-class'} >Class</Link></li>
+                            <li><Link to={'/'} >Instructor</Link></li>
+                        </ul>
+                        <div className="divider"></div>
 
 
                         <button onClick={handelLogout} className="mr-4">Logout</button>

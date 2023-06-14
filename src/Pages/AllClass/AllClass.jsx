@@ -12,6 +12,7 @@ const AllClass = () => {
     const availableSit = (availableSeats, enroll) => parseInt(availableSeats)- parseInt(enroll);
 
     const addToCart = (data) =>{
+        data.classId = data._id;
         delete data?._id;
         data.studentName = user.displayName;
         data.studentEmail = user.email;
