@@ -3,7 +3,7 @@ import SectionHeader from "../../Shared/SectionHeader/SectionHeader.jsx";
 
 const PopularClasses = () => {
     return (
-        <div className="mb-12 lg:px-12">
+        <div className="lg:px-12">
             <SectionHeader title="Popular Class"></SectionHeader>
             <div className="grid grid-cols-3 gap-4">
                 <div className="card w-96 bg-base-100 shadow-xl image-full h-full">
