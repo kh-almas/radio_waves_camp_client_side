@@ -2,7 +2,6 @@ import React, { Fragment, useState }  from 'react';
 import UseClass from "../../../Hooks/useClass.jsx";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure.jsx";
 import Swal from "sweetalert2";
-import { Dialog, Transition } from '@headlessui/react'
 import {Link} from "react-router-dom";
 
 const MyClass = () => {
