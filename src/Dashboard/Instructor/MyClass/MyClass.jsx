@@ -31,7 +31,6 @@ const MyClass = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/class/${id}`).then((data) => {
-                    console.log(data);
                     if(data.data.deletedCount){
                         refetch();
                         Swal.fire(
