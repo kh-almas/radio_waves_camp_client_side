@@ -8,10 +8,10 @@ const ManageUser = () => {
     const [refetch, allUsers] = UseUser();
     const {user} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
-    const setRole = (id, role) => {
+    const setRole = (id, role, currentRole) => {
         console.log(role)
         const data = {role: role};
-        axiosSecure.put(`/set-role/${id}/${user?.email}`, data)
+        axiosSecure.put(`/set-role/${id}/${user?.email}/${currentRole}`, data)
             .then((data) => {
                 console.log(data)
                 refetch();
@@ -78,9 +78,9 @@ const ManageUser = () => {
                                 </td>
                                 <td>{user?.phone}</td>
                                 <th>
-                                    <button onClick={() => setRole(user?._id, "admin")} className="btn btn-ghost btn-xs">Make Admin</button>
-                                    <button onClick={() => setRole(user?._id, "instructor")} className="btn btn-ghost btn-xs">Make Instructor</button>
-                                    <button onClick={() => setRole(user?._id, "user")} className="btn btn-ghost btn-xs">Make User</button>
+                                    <button onClick={() => setRole(user?._id, "admin", user?.role)} className="btn btn-ghost btn-xs">Make Admin</button>
+                                    <button onClick={() => setRole(user?._id, "instructor", user?.role)} className="btn btn-ghost btn-xs">Make Instructor</button>
+                                    <button onClick={() => setRole(user?._id, "user", user?.role)} className="btn btn-ghost btn-xs">Make User</button>
                                 </th>
                             </tr>
                         )

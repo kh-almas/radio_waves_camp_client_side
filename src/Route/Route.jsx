@@ -11,6 +11,7 @@ import MyClass from "../Dashboard/Instructor/MyClass/MyClass.jsx";
 import UpdateClass from "../Dashboard/Instructor/UpdateClass/UpdateClass.jsx";
 import ManageUser from "../Dashboard/Admin/User/ManageUser.jsx";
 import ManageClass from "../Dashboard/Admin/Class/ManageClass.jsx";
+import AllClass from "../Pages/AllClass/AllClass.jsx";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/all-class',
+                element: <AllClass />
             },
             {
                 path: '/registration',
