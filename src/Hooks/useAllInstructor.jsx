@@ -10,7 +10,7 @@ const UseAllInstructor = () => {
         queryKey: ['all-instructor'],
         enabled: !loading,
         queryFn: async () => {
-            const response = await axiosSecure.get(`/all-instructor/${user?.email}`)
+            const response = await axiosSecure.get(`/all-instructor`)
             return response.data;
         },
     })

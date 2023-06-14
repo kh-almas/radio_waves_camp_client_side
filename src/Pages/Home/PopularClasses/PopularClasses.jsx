@@ -9,7 +9,7 @@ const PopularClasses = () => {
     const axiosSecure = useAxiosSecure();
     const [data , setData] = useState([]);
     useEffect( () => {
-        axiosSecure.get(`/popular-class/${user?.email}`)
+        axiosSecure.get(`/popular-class`)
             .then((data) => {
                 setData(data.data.slice(0,6));
             }).catch(e => {

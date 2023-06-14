@@ -8,7 +8,7 @@ const PopularInstructors = () => {
     const axiosSecure = useAxiosSecure();
     const [data , setData] = useState([]);
     useEffect( () => {
-        axiosSecure.get(`/popular-instructor/${user?.email}`)
+        axiosSecure.get(`/popular-instructor`)
             .then((data) => {
                 setData(data.data.slice(0,6));
             }).catch(e => {
